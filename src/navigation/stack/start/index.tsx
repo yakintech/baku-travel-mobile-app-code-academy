@@ -9,10 +9,13 @@ const Start = createNativeStackNavigator();
 
 const StartStack = () => {
   return (
-    <Start.Navigator>
+    <Start.Navigator screenOptions={{
+      headerShown: false
+    }}>
       <Start.Screen name="Onboarding1" component={OnboardingScreen1} />
-      <Start.Screen name="Onboarding2" component={OnboardingScreen2} /> 
-      <Start.Screen name="CategoryList" component={CategoryListScren} />       
+      <Start.Screen name="CategoryList" options={{
+        gestureEnabled: false
+      }} component={CategoryListScren} />
 
     </Start.Navigator>
   )
