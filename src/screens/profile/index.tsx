@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useContext } from 'react'
 import { FavoritesContext } from '../../context/FavoritesContext';
+import ImagePickerSample from '../../samples/ImagePickerSample';
 
 const ProfileMain = () => {
 
@@ -10,6 +11,7 @@ const ProfileMain = () => {
   return (<>
     <View>
       <Text>{favorites.length}</Text>
+      <ImagePickerSample/>
     </View>
   </>)
 }
