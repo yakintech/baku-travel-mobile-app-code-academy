@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import TabMain from './src/navigation/tab'
 import ContactList from './src/samples/ContactList'
@@ -7,22 +7,24 @@ import AddContact from './src/samples/AddContact'
 import { FavoritesProvider } from './src/context/FavoritesContext'
 import { getUserCategories, removeAllUserCategories } from './src/utils/storage/usersSavedCategoriesHelper'
 import StartStack from './src/navigation/stack/start'
+import { FirstLoginContext, FirstLoginProvider } from './src/context/FirstLoginContext'
 
 const App = () => {
 
+
   const [loading, setloading] = useState(true);
-  const [firstLogin, setfirstLogin] = useState(true);
+  let { firstLogin, setFirstLogin } = useContext(FirstLoginContext);
 
   useEffect(() => {
 
     getUserCategories()
       .then(res => {
         if (res) {
-          setfirstLogin(false)
+          setFirstLogin(false)
           setloading(false);
         }
         else {
-          setfirstLogin(true);
+          setFirstLogin(true);
           setloading(false);
         }
       })
@@ -48,9 +50,11 @@ const App = () => {
 
   return (<>
     <NavigationContainer>
-      {
-        openScreen()
-      }
+      <FirstLoginProvider>
+        {
+          openScreen()
+        }
+      </FirstLoginProvider>
     </NavigationContainer>
   </>
   )

@@ -1,15 +1,17 @@
 import { View, Text, FlatList, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { categoriesData } from '../../data/categoriesData'
 import { Category } from '../../models/Category';
 import { Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import { saveUserCategories } from '../../utils/storage/usersSavedCategoriesHelper';
+import { FirstLoginContext } from '../../context/FirstLoginContext';
 
-const CategoryListScren = () => {
+const CategoryListScren = ({ navigation }: any) => {
 
     const [categories, setcategories] = useState<Category[]>([]);
 
+    const {firstLogin, setFirstLogin} = useContext(FirstLoginContext);
 
 
     //category varsa çıkar yoksa ekle
@@ -56,13 +58,16 @@ const CategoryListScren = () => {
 
 
     const next = () => {
-        if(categories.length > 0){
+        if (categories.length > 0) {
             saveUserCategories(categories)
-            .then(res => {
-                console.log('Success!');
-                
-            })
+                .then(res => {
+                    setFirstLogin(false)
+                })
         }
+        else{
+            setFirstLogin(false)
+        }
+
     }
     return (
         <View>
