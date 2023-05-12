@@ -6,12 +6,13 @@ import { Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import { saveUserCategories } from '../../utils/storage/usersSavedCategoriesHelper';
 import { FirstLoginContext } from '../../context/FirstLoginContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CategoryListScren = ({ navigation }: any) => {
 
     const [categories, setcategories] = useState<Category[]>([]);
 
-    const {firstLogin, setFirstLogin} = useContext(FirstLoginContext);
+    const { firstLogin, setFirstLogin } = useContext(FirstLoginContext);
 
 
     //category varsa çıkar yoksa ekle
@@ -64,20 +65,19 @@ const CategoryListScren = ({ navigation }: any) => {
                     setFirstLogin(false)
                 })
         }
-        else{
+        else {
             setFirstLogin(false)
         }
 
     }
     return (
-        <View>
+        <SafeAreaView>
             <Button onPress={next}>Next</Button>
-
             <FlatList
                 data={categoriesData}
                 renderItem={renderItem}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
