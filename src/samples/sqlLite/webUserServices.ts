@@ -13,8 +13,6 @@ export const saveWebUser = async ( webUser: WebUser) => {
 }
 
 
-
-
 export const getAllWebUsers = async () => {
 
     let db = await  getDBConnection();

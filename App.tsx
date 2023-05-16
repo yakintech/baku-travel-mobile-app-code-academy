@@ -7,6 +7,7 @@ import { getUserCategories, removeAllUserCategories } from './src/utils/storage/
 import StartStack from './src/navigation/stack/start'
 import { FirstLoginContext, FirstLoginProvider } from './src/context/FirstLoginContext'
 import AddWebUser from './src/screens/webUser/AddWebUser'
+import MapIntro from './src/samples/map/MapIntro'
 
 const App = () => {
 
@@ -48,10 +49,10 @@ const App = () => {
 
 
   return (<>
-    <SafeAreaView>
-      <AddWebUser />
+    {/* <SafeAreaView> */}
+      <MapIntro/>
 
-    </SafeAreaView>
+    {/* </SafeAreaView> */}
     {/* <NavigationContainer>
       <FirstLoginProvider>
         {
