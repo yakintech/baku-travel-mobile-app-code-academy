@@ -9,8 +9,10 @@ import { FirstLoginContext, FirstLoginProvider } from './src/context/FirstLoginC
 import AddWebUser from './src/screens/webUser/AddWebUser'
 import MapIntro from './src/samples/map/MapIntro'
 
+
 const App = () => {
 
+  // const {t} = useTranslation
 
   const [loading, setloading] = useState(true);
   let { firstLogin, setFirstLogin } = useContext(FirstLoginContext);
@@ -50,8 +52,6 @@ const App = () => {
 
   return (<>
     {/* <SafeAreaView> */}
-      <MapIntro/>
-
     {/* </SafeAreaView> */}
     {/* <NavigationContainer>
       <FirstLoginProvider>
