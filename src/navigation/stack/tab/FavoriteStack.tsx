@@ -27,7 +27,7 @@ const SupplierListScreen = () => {
   const [companyName, setcompanyName] = useState('');
 
 
-  let { data: response, isLoading, error, refetch } = useQuery("supplierData", () => {
+  let { data: response, isLoading, error, refetch, dataUpdatedAt,isPreviousData } = useQuery("supplierData", () => {
     return axios.get('https://northwind.vercel.app/api/suppliers')
   }
     ,
@@ -64,6 +64,7 @@ const SupplierListScreen = () => {
       postloading ? <Text style={{fontSize:50}}>loading...</Text> : <></>
     }
       <View>
+        <Text>{dataUpdatedAt}</Text>
         <Text>Company Name</Text>
         <TextInput onChangeText={setcompanyName} />
         <Button onPress={add}>Add</Button>
