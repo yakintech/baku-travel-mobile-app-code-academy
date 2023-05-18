@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, FlatList } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import TabMain from './src/navigation/tab'
@@ -8,7 +8,10 @@ import StartStack from './src/navigation/stack/start'
 import { FirstLoginContext, FirstLoginProvider } from './src/context/FirstLoginContext'
 import AddWebUser from './src/screens/webUser/AddWebUser'
 import MapIntro from './src/samples/map/MapIntro'
+import axios from 'axios'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
+export const queryClient = new QueryClient();
 
 const App = () => {
 
@@ -51,17 +54,30 @@ const App = () => {
 
 
   return (<>
-    {/* <SafeAreaView> */}
-    {/* </SafeAreaView> */}
-    {/* <NavigationContainer>
-      <FirstLoginProvider>
-        {
-          openScreen()
-        }
-      </FirstLoginProvider>
-    </NavigationContainer> */}
+    <QueryClientProvider client={queryClient}>
+
+
+
+      {/* <SafeAreaView> */}
+      {/* </SafeAreaView> */}
+      <NavigationContainer>
+        <FirstLoginProvider>
+          {
+            openScreen()
+          }
+        </FirstLoginProvider>
+      </NavigationContainer>
+    </QueryClientProvider>
   </>
   )
 }
 
 export default App
+
+
+
+
+
+
+
+
