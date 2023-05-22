@@ -3,19 +3,25 @@ import React, { useContext, useEffect, useState } from 'react'
 import { BaseNetwork } from '../../network/api'
 import { FavoritesContext } from '../../context/FavoritesContext'
 import { Button } from 'react-native-paper'
+import Lottie from 'lottie-react-native';
+
 
 const ExploreMain = () => {
 
     let { favorites, setFavorites } = useContext(FavoritesContext);
 
     const [products, setproducts] = useState<any[]>([]);
+    const [loading, setloading] = useState(true)
 
     useEffect(() => {
 
-        let baseService = new BaseNetwork();
-        baseService.getAll('products').then((response) => {
-            setproducts(response);
-        })
+        setTimeout(() => {
+            let baseService = new BaseNetwork();
+            baseService.getAll('products').then((response) => {
+                setproducts(response);
+                setloading(false);
+            })   
+        }, 3000);
 
     }, [])
 
@@ -52,11 +58,14 @@ const ExploreMain = () => {
 
     return (
         <>
-            <FlatList
-                data={products}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
+        {
+            loading ? <Lottie source={require('./../../assets/loading/loadingLottie.json')} autoPlay loop></Lottie> : <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+        />
+        }
+   
         </>
     )
 }
